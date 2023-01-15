@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       SDL2DIR: /usr/
-      CXX: i686-w64-mingw32-g++-posix
+      CXX: g++-mingw-w64-x86-64-posix
     steps:
       - uses: actions/checkout@v2
         with:
@@ -15,7 +15,10 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update -qq && sudo apt-get install -y
           cmake
-          g++-mingw-w64-i686
+          binutils-mingw-w64-x86-64
+          g++-mingw-w64-x86-64-posix
+          g++-mingw-w64-x86-64
+          libsdl2-mixer-dev
       - name: Install SDL2
         run: |
           curl -L https://github.com/mmatyas/supermariowar/releases/download/v2.0-beta.0/i686-w64-mingw32_mixerx.tar.xz | tar xJf - -C /tmp/
@@ -38,10 +41,8 @@ jobs:
       - name: Package
         run: |
           mkdir supermariowar
-          cp /usr/lib/gcc/i686-w64-mingw32/7.3-win32/{libgcc_s_sjlj-1,libstdc++-6}.dll supermariowar/
-          cp /tmp/i686-w64-mingw32/usr/bin/{SDL2,SDL2_image,SDL2_mixer_ext}.dll supermariowar/
           cp build/Binaries/Release/{smw,smw-leveledit,smw-worldedit,smw-server}.exe supermariowar/
-          i686-w64-mingw32-strip supermariowar/*
+          x86_64-w64-mingw32-strip supermariowar/*
           cp docs/readme-v1.8.html supermariowar/
           rsync -aC --exclude .git data supermariowar/
           zip -r "supermariowar_$(date +%F)_windows.zip" supermariowar
