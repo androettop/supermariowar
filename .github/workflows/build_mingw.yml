@@ -20,6 +20,7 @@ jobs:
           g++-mingw-w64-x86-64
           libsdl2-mixer-dev
           zlib1g
+          zlib1g-dev
       - name: Install SDL2
         run: |
           curl -L https://github.com/mmatyas/supermariowar/releases/download/v2.0-beta.0/i686-w64-mingw32_mixerx.tar.xz | tar xJf - -C /tmp/
