@@ -4,7 +4,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   mingw-cross:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     env:
       SDL2DIR: /usr/
       CXX: g++-mingw-w64-x86-64-posix
@@ -16,6 +16,7 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y
           cmake
           binutils-mingw-w64-x86-64
+          g++-mingw-w64-x86-64-posix
           g++-mingw-w64-x86-64
           libsdl2-mixer-dev
       - name: Install SDL2
