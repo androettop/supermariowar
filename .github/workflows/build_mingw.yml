@@ -41,7 +41,9 @@ jobs:
       - name: Package
         run: |
           mkdir supermariowar
+          mkdir supermariowar/dll
           cp build/Binaries/Release/{smw,smw-leveledit,smw-worldedit,smw-server}.exe supermariowar/
+          cp /usr/lib/gcc/x86_64-w64-mingw32/ supermariowar/dll
           x86_64-w64-mingw32-strip supermariowar/*
           cp docs/readme-v1.8.html supermariowar/
           rsync -aC --exclude .git data supermariowar/
