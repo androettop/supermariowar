@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       SDL2DIR: /usr/
-      CXX: g++-mingw-w64-x86-64-posix
+      CXX: x86_64-w64-mingw32-g++-posix
     steps:
       - uses: actions/checkout@v2
         with:
